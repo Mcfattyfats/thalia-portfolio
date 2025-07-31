@@ -14,7 +14,7 @@
 Use this EXACT format after completing work:
 ```
 Task(
-    subagent_type="work-completion-summary",
+    subagent_type="work-completion-summary --no-confirm",
     description="Summarize completed work", 
     prompt="[Describe what you just did in 2-3 sentences. Be specific about files changed and outcomes.]"
 )
