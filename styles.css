@@ -316,31 +316,71 @@ header {
 @media (max-width: 768px) {
     .main-title {
         font-size: clamp(60px, 25vw, 150px);
+        left: 20vw;
+    }
+    
+    .content-wrapper {
+        width: 270vw;
     }
     
     .image-container {
-        transform: scale(0.8);
-        transform-origin: center center;
+        transform: none;
     }
     
     .image-1 {
-        transform-origin: center bottom;
-        bottom: 0 !important;
+        width: 140px;
+        height: 180px;
+        left: 5vw;
+        bottom: 15%;
     }
     
     .image-2 {
-        transform-origin: center top;
-        top: 0 !important;
+        width: 150px;
+        height: 200px;
+        left: 92vw;
+        top: 10%;
+    }
+    
+    .image-3 {
+        width: 160px;
+        height: 160px;
+        left: 160vw;
+        top: 25%;
+    }
+    
+    .image-4 {
+        width: 150px;
+        height: 200px;
+        left: 10vw;
+        top: 20%;
+    }
+    
+    .image-5 {
+        width: 140px;
+        height: 160px;
+        left: 85vw;
+        bottom: 20%;
     }
     
     .image-6 {
-        transform-origin: center top;
-        top: 0 !important;
+        width: 160px;
+        height: 220px;
+        left: 230vw;
+        top: 15%;
     }
     
     .image-7 {
-        transform-origin: center bottom;
-        bottom: 0 !important;
+        width: 150px;
+        height: 200px;
+        left: 180vw;
+        bottom: 10%;
+    }
+    
+    .image-8 {
+        width: 140px;
+        height: 180px;
+        left: 250vw;
+        bottom: 25%;
     }
     
     header {
