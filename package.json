@@ -1,0 +1,13 @@
+{
+  "name": "scroll-performance-test",
+  "version": "1.0.0",
+  "description": "Testing scroll performance improvements",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "serve": "python3 -m http.server 8080"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.54.1"
+  }
+}
