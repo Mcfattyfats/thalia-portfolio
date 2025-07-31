@@ -22,8 +22,12 @@ When invoked after work completion, you must follow these steps:
 3. **Suggest next steps**: Add concise 1 logical next actions in equally concise format
 4. **Generate audio**:
    - Use `mcp__cartesia-mcp__text_to_speech` with voice_id "f4d5f01f-5fac-4192-8cb5-2d9343d962fb"
-   - Save to absolute path: `/Users/henrylee/Repos/th/.claude/agents/work-recordings`
+   - IMPORTANT: Always use voice.mode="id" and voice.id="f4d5f01f-5fac-4192-8cb5-2d9343d962fb"
+   - Get current directory with `pwd` command
+   - Save to absolute path: `{current_directory}/.claude/agents/work-recordings/text_to_speech_{timestamp}.wav`
+   - IMPORTANT: Use filename pattern `text_to_speech_YYYY-MM-DD_HH-MM-SS.wav`
    - Create output directory if it doesn't exist
+   - Do NOT create multiple audio files
 5. **Play audio**: Use `Bash` with `afplay` command to automatically play the generated summary
 
 **Best Practices:**
@@ -32,7 +36,10 @@ When invoked after work completion, you must follow these steps:
 - Include humor and sarcasm while delivering the point
 - Ensure output directory exists before generating audio
 - Use timestamp in filename to avoid conflicts
-- IMPORTANT: Use the cartesia for text to speech only. Use Bash with afplay command for playing audio. Do not use any other tools. Base your summary on the user prompt given to you.
+- IMPORTANT: Run only bash: 'pwd', cartesia MCP and Bash with afplay command for playing audio. Do not use any other tools. Base your summary on the user prompt given to you.
+- CRITICAL: For mcp__cartesia-mcp__text_to_speech, always use these exact parameters:
+  - voice: {mode: "id", id: "f4d5f01f-5fac-4192-8cb5-2d9343d962fb"}
+  - output_format: {container: "wav", encoding: "pcm_s16le", sample_rate: 44100}
 
 ## Report / Response
 

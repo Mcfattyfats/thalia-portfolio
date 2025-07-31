@@ -26,6 +26,20 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Canela';
+    src: url('Canela_Collection/Canela Family/Canela-Bold-Trial.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Canela';
+    src: url('Canela_Collection/Canela Family/Canela-Black-Trial.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -133,12 +147,10 @@ header {
     left: 30vw;
     transform: translateY(-50%);
     font-size: clamp(80px, 20vw, 300px);
-    font-weight: 100;
+    font-weight: 700;
     letter-spacing: -0.03em;
     line-height: 0.9;
-    color: transparent;
-    -webkit-text-stroke: 2px #000;
-    text-stroke: 2px #000;
+    color: #000;
     white-space: nowrap;
     z-index: 1;
 }
@@ -220,6 +232,13 @@ header {
     height: 280px;
     left: 130vw;
     bottom: 0;
+}
+
+.image-8 {
+    width: 200px;
+    height: 280px;
+    left: 190vw;
+    bottom: 5%;
 }
 
 

@@ -18,7 +18,7 @@ Task(
     description="Summarize completed work", 
     prompt="[Describe what you just did in 2-3 sentences. Be specific about files changed and outcomes.]"
 )
-```
+``` 
 
 ## Example prompts:
 - "I fixed the authentication bug in auth.js by updating the token validation logic. All tests are now passing."
