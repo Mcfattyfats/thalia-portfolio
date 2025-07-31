@@ -207,12 +207,13 @@ scrollContainer.addEventListener('touchmove', (e) => {
     const touch = e.touches[0];
     const now = performance.now();
     
-    // Calculate movement
-    const deltaY = (touchStartY - touch.clientY) * config.touchSensitivity;
-    const deltaX = touchStartX - touch.clientX;
+    // Calculate movement with natural scrolling for mobile
+    // Invert both deltas for natural touch behavior
+    const deltaY = (touch.clientY - touchStartY) * config.touchSensitivity;
+    const deltaX = touch.clientX - touchStartX;
     
     // Update target position
-    targetScroll = touchStartScroll + deltaY + deltaX;
+    targetScroll = touchStartScroll - deltaY - deltaX;
     targetScroll = Math.max(0, Math.min(targetScroll, getMaxScroll()));
     
     // Track velocity for momentum
@@ -240,7 +241,8 @@ scrollContainer.addEventListener('touchend', () => {
     // Calculate average velocity for smooth momentum
     if (touchVelocities.length > 0) {
         const avgVelocity = touchVelocities.reduce((a, b) => a + b, 0) / touchVelocities.length;
-        scrollVelocity = -avgVelocity * config.touchSensitivity * 15;
+        // Natural scrolling: positive velocity for momentum
+        scrollVelocity = avgVelocity * config.touchSensitivity * 15;
         scrollVelocity = Math.sign(scrollVelocity) * Math.min(Math.abs(scrollVelocity), config.maxVelocity);
         startAnimation();
     }

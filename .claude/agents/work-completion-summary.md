@@ -21,14 +21,20 @@ When invoked after work completion, you must follow these steps:
 2. IMPORTANT: **Create ultra-concise summary**: Craft a concise 1 sentence maximum summary of what was done (no introductions, no filler)
 3. **Suggest next steps**: Add concise 1 logical next actions in equally concise format
 4. **Generate audio**:
-   - Use `mcp__cartesia-mcp__text_to_speech` with voice_id "f4d5f01f-5fac-4192-8cb5-2d9343d962fb"
-   - IMPORTANT: Always use voice.mode="id" and voice.id="f4d5f01f-5fac-4192-8cb5-2d9343d962fb"
-   - Get current directory with `pwd` command
-   - Save to absolute path: `{current_directory}/.claude/agents/work-recordings/text_to_speech_{timestamp}.wav`
-   - IMPORTANT: Use filename pattern `text_to_speech_YYYY-MM-DD_HH-MM-SS.wav`
-   - Create output directory if it doesn't exist
+   - First check if `mcp__cartesia-mcp__text_to_speech` tool is available
+   - Use `mcp__cartesia-mcp__text_to_speech` with these EXACT parameters:
+     - model_id: "sonic-2"
+     - transcript: "[your summary text here]"
+     - voice: {mode: "id", id: "f4d5f01f-5fac-4192-8cb5-2d9343d962fb"}
+     - language: "en"
+     - output_format: {container: "wav", encoding: "pcm_s16le", sample_rate: 44100}
+   - The file will be saved automatically to the OUTPUT_DIRECTORY configured in MCP
+   - Use filename pattern `text_to_speech_YYYY-MM-DD_HH-MM-SS.wav`
    - Do NOT create multiple audio files
-5. **Play audio**: Use `Bash` with `afplay` command to automatically play the generated summary
+5. **Play audio**: 
+   - Get the full path to the generated audio file
+   - Use `Bash` to run: `afplay /Users/henrylee/Repos/th/.claude/agents/work-recordings/text_to_speech_YYYY-MM-DD_HH-MM-SS.wav`
+   - Replace YYYY-MM-DD_HH-MM-SS with actual timestamp used
 
 **Best Practices:**
 - Focus only on what was accomplished and next steps, but in a fun way
@@ -36,10 +42,9 @@ When invoked after work completion, you must follow these steps:
 - Include humor and sarcasm while delivering the point
 - Ensure output directory exists before generating audio
 - Use timestamp in filename to avoid conflicts
-- IMPORTANT: Run only bash: 'pwd', cartesia MCP and Bash with afplay command for playing audio. Do not use any other tools. Base your summary on the user prompt given to you.
-- CRITICAL: For mcp__cartesia-mcp__text_to_speech, always use these exact parameters:
-  - voice: {mode: "id", id: "f4d5f01f-5fac-4192-8cb5-2d9343d962fb"}
-  - output_format: {container: "wav", encoding: "pcm_s16le", sample_rate: 44100}
+- IMPORTANT: Run only Bash and mcp__cartesia-mcp__text_to_speech tools. Base your summary on the user prompt given to you.
+- If mcp__cartesia-mcp__text_to_speech is not available, respond with "Audio generation tool not available" and provide text summary only
+- When playing audio, use: `afplay /Users/henrylee/Repos/th/.claude/agents/work-recordings/[filename]`
 
 ## Report / Response
 
