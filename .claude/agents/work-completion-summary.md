@@ -22,7 +22,7 @@ When invoked after work completion, you must follow these steps:
 3. **Suggest next steps**: Add concise 1 logical next actions in equally concise format
 4. **Generate audio**:
    - Use `mcp__cartesia-mcp__text_to_speech` with voice_id "f4d5f01f-5fac-4192-8cb5-2d9343d962fb"
-   - Save to absolute path: `/Users/henrylee/Repos/th/.claude/agents/workrecordings`
+   - Save to absolute path: `/Users/henrylee/Repos/th/.claude/agents/work-recordings`
    - Create output directory if it doesn't exist
 5. **Play audio**: Use `Bash` with `afplay` command to automatically play the generated summary
 
