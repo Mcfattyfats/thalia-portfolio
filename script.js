@@ -200,37 +200,40 @@ scrollContainer.addEventListener('touchstart', (e) => {
 });
 
 scrollContainer.addEventListener('touchmove', (e) => {
-    e.preventDefault();
-    
-    const touch = e.touches[0];
-    const now = performance.now();
-    
-    // Calculate movement with natural scrolling for mobile
-    // Only use horizontal movement
-    const deltaX = touch.clientX - touchStartX;
-    
-    // Update target position
-    targetScroll = touchStartScroll - deltaX;
-    targetScroll = Math.max(0, Math.min(targetScroll, getMaxScroll()));
-    
-    // Track velocity for momentum
-    const timeDelta = now - lastTouchTime;
-    if (timeDelta > 0) {
-        const velocity = (touch.clientX - lastTouchX) / timeDelta * 16;
-        touchVelocities.push(velocity);
-        if (touchVelocities.length > 3) {
-            touchVelocities.shift();
+    // Only prevent default and handle custom scrolling on the landing page
+    if (document.body.classList.contains('landing-page') || window.location.pathname === '/' || window.location.pathname === '/index.html' || window.location.pathname === '') {
+        e.preventDefault();
+        
+        const touch = e.touches[0];
+        const now = performance.now();
+        
+        // Calculate movement with natural scrolling for mobile
+        // Only use horizontal movement
+        const deltaX = touch.clientX - touchStartX;
+        
+        // Update target position
+        targetScroll = touchStartScroll - deltaX;
+        targetScroll = Math.max(0, Math.min(targetScroll, getMaxScroll()));
+        
+        // Track velocity for momentum
+        const timeDelta = now - lastTouchTime;
+        if (timeDelta > 0) {
+            const velocity = (touch.clientX - lastTouchX) / timeDelta * 16;
+            touchVelocities.push(velocity);
+            if (touchVelocities.length > 3) {
+                touchVelocities.shift();
+            }
         }
-    }
-    
-    lastTouchX = touch.clientX;
-    lastTouchTime = now;
-    
-    // Immediate but smooth update
-    if (!animationId) {
-        currentScroll = targetScroll;
-        scrollContainer.scrollLeft = currentScroll;
-        updateParallax(currentScroll);
+        
+        lastTouchX = touch.clientX;
+        lastTouchTime = now;
+        
+        // Immediate but smooth update
+        if (!animationId) {
+            currentScroll = targetScroll;
+            scrollContainer.scrollLeft = currentScroll;
+            updateParallax(currentScroll);
+        }
     }
 });
 
