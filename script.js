@@ -178,21 +178,19 @@ window.addEventListener('keydown', (e) => {
 });
 
 // Touch support with momentum
-let touchStartY = 0;
 let touchStartX = 0;
 let touchStartTime = 0;
 let touchStartScroll = 0;
-let lastTouchY = 0;
+let lastTouchX = 0;
 let lastTouchTime = 0;
 let touchVelocities = [];
 
 scrollContainer.addEventListener('touchstart', (e) => {
     const touch = e.touches[0];
-    touchStartY = touch.clientY;
     touchStartX = touch.clientX;
     touchStartTime = performance.now();
     touchStartScroll = currentScroll;
-    lastTouchY = touchStartY;
+    lastTouchX = touchStartX;
     lastTouchTime = touchStartTime;
     touchVelocities = [];
     
@@ -208,25 +206,24 @@ scrollContainer.addEventListener('touchmove', (e) => {
     const now = performance.now();
     
     // Calculate movement with natural scrolling for mobile
-    // Invert both deltas for natural touch behavior
-    const deltaY = (touch.clientY - touchStartY) * config.touchSensitivity;
+    // Only use horizontal movement
     const deltaX = touch.clientX - touchStartX;
     
     // Update target position
-    targetScroll = touchStartScroll - deltaY - deltaX;
+    targetScroll = touchStartScroll - deltaX;
     targetScroll = Math.max(0, Math.min(targetScroll, getMaxScroll()));
     
     // Track velocity for momentum
     const timeDelta = now - lastTouchTime;
     if (timeDelta > 0) {
-        const velocity = (touch.clientY - lastTouchY) / timeDelta * 16;
+        const velocity = (touch.clientX - lastTouchX) / timeDelta * 16;
         touchVelocities.push(velocity);
         if (touchVelocities.length > 3) {
             touchVelocities.shift();
         }
     }
     
-    lastTouchY = touch.clientY;
+    lastTouchX = touch.clientX;
     lastTouchTime = now;
     
     // Immediate but smooth update
@@ -241,8 +238,8 @@ scrollContainer.addEventListener('touchend', () => {
     // Calculate average velocity for smooth momentum
     if (touchVelocities.length > 0) {
         const avgVelocity = touchVelocities.reduce((a, b) => a + b, 0) / touchVelocities.length;
-        // Natural scrolling: positive velocity for momentum
-        scrollVelocity = avgVelocity * config.touchSensitivity * 15;
+        // Natural scrolling: negative velocity for momentum (horizontal)
+        scrollVelocity = -avgVelocity * config.touchSensitivity * 15;
         scrollVelocity = Math.sign(scrollVelocity) * Math.min(Math.abs(scrollVelocity), config.maxVelocity);
         startAnimation();
     }
