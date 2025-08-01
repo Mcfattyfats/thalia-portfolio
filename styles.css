@@ -320,7 +320,7 @@ header {
     }
     
     .content-wrapper {
-        width: 270vw;
+        width: 265vw;
     }
     
     .image-container {
@@ -338,7 +338,7 @@ header {
         width: 150px;
         height: 200px;
         left: 92vw;
-        top: 10%;
+        top: 0;
     }
     
     .image-3 {
@@ -352,7 +352,7 @@ header {
         width: 150px;
         height: 200px;
         left: 10vw;
-        top: 20%;
+        top: calc(20% - 10px);
     }
     
     .image-5 {
@@ -366,7 +366,7 @@ header {
         width: 160px;
         height: 220px;
         left: 230vw;
-        top: 15%;
+        top: 0;
     }
     
     .image-7 {
