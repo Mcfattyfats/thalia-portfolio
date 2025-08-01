@@ -6,6 +6,13 @@
 }
 
 @font-face {
+    font-family: 'Nonchalance';
+    src: url('nonchalance/Nonchalance Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
     font-family: 'Canela';
     src: url('Canela_Collection/Canela Family/Canela-Light-Trial.otf') format('opentype');
     font-weight: 300;
@@ -146,11 +153,12 @@ header {
     top: 50%;
     left: 30vw;
     transform: translateY(-50%);
+    font-family: 'Nonchalance', sans-serif;
     font-size: clamp(64px, 16vw, 240px);
-    font-weight: 700;
+    font-weight: 500;
     letter-spacing: -0.03em;
     line-height: 0.9;
-    color: #000;
+    color: #781a35;
     white-space: nowrap;
     z-index: 1;
 }
